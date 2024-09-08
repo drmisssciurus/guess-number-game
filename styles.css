@@ -46,12 +46,12 @@ body {
 }
 
 .form-wrapper {
+    width: 70%;
     display: flex;
     flex-direction: column;
     gap: 30px;
     justify-content: center;
     align-items: center;
-    width: 60%;
 }
 
 .field {
@@ -102,6 +102,15 @@ body {
     rgba(162, 158, 215, 0.04) 4px 5px;
     cursor: pointer;
     transition: all .2s;
+}
+
+.button:hover {
+    background-color: rgb(133, 128, 190);
+}
+
+.button:active {
+    background-color: rgb(105, 99, 165);
+    box-shadow: none;
 }
 
 .button:last-child {
