@@ -5,58 +5,78 @@ const userNumberOutput = document.querySelector('.field-form-input'),
       clueOutput = document.querySelector('.result-help-out'),
       attemptsOutput = document.querySelector('.result-count-out');
 
-// Function for create random number
+// Variables
 
-function getRandomNumber() {
-    return Math.floor(Math.random() * 100) + 1;
-}
-
-const computerNumber = getRandomNumber();
-
+let computerNumber = 0;
 let clickCount = 0;
+let gameIsReady = false;
 
-//user output function
-
-function compareNumbers() {
-    console.log(computerNumber);
-    attemptsOutput.innerHTML = clickCount;
-
-    checkButton.addEventListener('click', () => {
-        if(!userNumberOutput.value) {
-            return clueOutput.innerHTML = 'Add some number please ^•-•^';
-        }
-
-        if((Number(userNumberOutput.value) > 100) || (Number(userNumberOutput.value) < 0)) {
-            return clueOutput.innerHTML = "That wasn't a deal :(";
-        }
-
-        if(computerNumber !== Number(userNumberOutput.value)) {
-            clickCount++
-        }
-
-        if (computerNumber < Number(userNumberOutput.value))  {
-            console.log('many');
-            clueOutput.innerHTML = 'Higher';
-        } else if (computerNumber > Number(userNumberOutput.value)) {
-            console.log('low');
-            clueOutput.innerHTML = 'Lower';
-        } else if (computerNumber == Number(userNumberOutput.value)) {
-            console.log('good');
-            clueOutput.innerHTML = 'Good!';
-            resultOutput.innerHTML = 'Congratulations! You guessed the number!';
-        }
-
-        return attemptsOutput.innerHTML = clickCount;
-    })
-}
-
-compareNumbers();
+// Function for new game
 
 function newGame() {
-    newNumberButton.addEventListener('click', () => {
-        console.log(getRandomNumber());
-        
-    });
+    computerNumber = Math.floor(Math.random() * 100) + 1;
+    userNumberOutput.value = null;
+    clickCount = 0;
+    clueOutput.innerHTML = "";
+    attemptsOutput.innerHTML = clickCount;
+    resultOutput.innerHTML = "";
+    gameIsReady = true;
+    console.log(computerNumber);
 }
 
-newGame();
+// Function for compare numbers
+
+function compareNumbers() {
+    attemptsOutput.innerHTML = clickCount;
+    const userNumber = Number(userNumberOutput.value);
+
+    if(!gameIsReady === true) {
+        attemptsOutput.innerHTML = "";
+        return clueOutput.innerHTML = "Press NEW GAME =^^=";
+    }
+
+    if(!userNumberOutput.value) {
+        return clueOutput.innerHTML = "Add some number please ^•-•^";
+    }
+
+    if((userNumber > 100) || (userNumber) < 0) {
+        return clueOutput.innerHTML = "That wasn't a deal :(";
+    }
+
+    if(computerNumber !== userNumber) {
+        clickCount++
+    }
+
+    if (computerNumber < userNumber)  {
+        console.log('many');
+        clueOutput.innerHTML = "That would be too much";
+    } else if (computerNumber > userNumber) {
+        console.log('low');
+        clueOutput.innerHTML = "It won't be enough";
+    } else if (computerNumber == userNumber) {
+        console.log('good');
+        clueOutput.innerHTML = "Good!";
+        resultOutput.innerHTML = "Congratulations! You guessed the number!";
+    }
+
+    return attemptsOutput.innerHTML = clickCount;
+}
+
+// Event handlers
+
+newNumberButton.addEventListener('click', newGame);
+checkButton.addEventListener('click', compareNumbers);
+
+// Adding handling for pressing the Enter and Space keys
+
+userNumberOutput.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        compareNumbers();
+    }
+});
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === ' ') {
+        newGame();
+    }
+});
