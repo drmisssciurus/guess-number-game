@@ -9,7 +9,7 @@
 body {
     font-family: 'SUSE', sans-serif;
     background-color: rgba(252, 247, 55, 0.5);
-    max-width: 1140px;
+    max-width: 1000px;
     max-height: 700px;
 }
 
@@ -31,18 +31,26 @@ body {
     position: absolute;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    gap: 20px;
     align-items: center;
     text-align: center;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 5px;
-    padding: 25px;
-    height: 600px;
-    width: 900px;
+    padding: 30px;
+    margin: 50px;
+    max-height: 600px;
+    height: 100%;
+    max-width: 900px;
+    width: 100%;
     background-color: rgb(202, 199, 249);
     box-shadow: rgba(105, 99, 165, 0.35) 0px 5px 15px;;
+}
+
+.title {
+    font-size: clamp(25px, 1.99vw, 50px);
 }
 
 .form-wrapper {
@@ -55,22 +63,19 @@ body {
 }
 
 .field {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
     align-items: center;
     width: 100%;
 }
 
 .filed-form-label {
-    grid-area: 1 / 1 / 2 / 3;
     font-size: 30px;
 }
 
 .field-form-input {
-    grid-area: 2 / 1 / 3 / 3;
     margin: auto;
     background-color:#fff;
     width: 80%;
@@ -82,7 +87,6 @@ body {
 }
 
 .button {
-    grid-area: 3 / 1 / 4 / 2; 
     margin: auto;
     font-size: 24px;
     border: none;
@@ -113,12 +117,8 @@ body {
     box-shadow: none;
 }
 
-.button:last-child {
-    grid-area: 3 / 2 / 4 / 3;
-}
-
 .result {
-    font-size: 25px;
+    font-size: clamp(20px, 1vw, 25px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -135,5 +135,13 @@ body {
     grid-row-gap: 20px;
     align-items: center;
     width: 100%;
+}
 
+@media (max-width: 760px) {
+    .form-wrapper {
+        width: 90%;
+    }
+    .result {
+        row-gap: 15px;
+    }
 }
