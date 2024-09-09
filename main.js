@@ -36,10 +36,10 @@ function compareNumbers() {
 
         if (computerNumber < Number(userNumberOutput.value))  {
             console.log('many');
-            clueOutput.innerHTML = 'Many';
+            clueOutput.innerHTML = 'Higher';
         } else if (computerNumber > Number(userNumberOutput.value)) {
             console.log('low');
-            clueOutput.innerHTML = 'Low';
+            clueOutput.innerHTML = 'Lower';
         } else if (computerNumber == Number(userNumberOutput.value)) {
             console.log('good');
             clueOutput.innerHTML = 'Good!';
