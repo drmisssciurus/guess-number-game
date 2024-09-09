@@ -144,4 +144,7 @@ body {
     .result {
         row-gap: 15px;
     }
+    .container {
+        max-height: 1000px;
+    }
 }
