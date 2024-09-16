@@ -9,7 +9,7 @@ const userNumberOutput = document.querySelector('.field-form-input'),
 
 let computerNumber = 0;
 let clickCount = 0;
-let gameIsReady = false;
+let isGameIsReady = false;
 
 // Function for new game
 
@@ -20,8 +20,8 @@ function newGame() {
     clueOutput.innerHTML = "";
     attemptsOutput.innerHTML = clickCount;
     resultOutput.innerHTML = "";
-    gameIsReady = true;
-    console.log(computerNumber);
+    isGameIsReady = true;
+    // console.log(computerNumber);
 }
 
 // Function for compare numbers
@@ -30,7 +30,7 @@ function compareNumbers() {
     attemptsOutput.innerHTML = clickCount;
     const userNumber = Number(userNumberOutput.value);
 
-    if(!gameIsReady === true) {
+    if(!isGameIsReady) {
         attemptsOutput.innerHTML = "";
         return clueOutput.innerHTML = "Press NEW GAME =^^=";
     }
@@ -43,21 +43,23 @@ function compareNumbers() {
         return clueOutput.innerHTML = "That wasn't a deal :(";
     }
 
-    if(computerNumber !== userNumber) {
-        clickCount++
-    }
+    // if(computerNumber !== userNumber) {
+    //     clickCount++
+    // }
 
     if (computerNumber < userNumber)  {
-        console.log('many');
+        // console.log('many');
         clueOutput.innerHTML = "That would be too much";
     } else if (computerNumber > userNumber) {
-        console.log('low');
+        // console.log('low');
         clueOutput.innerHTML = "It won't be enough";
     } else if (computerNumber == userNumber) {
-        console.log('good');
+        // console.log('good');
         clueOutput.innerHTML = "Good!";
         resultOutput.innerHTML = "Congratulations! You guessed the number!";
     }
+
+    clickCount++
 
     return attemptsOutput.innerHTML = clickCount;
 }
